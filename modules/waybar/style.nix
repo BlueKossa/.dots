@@ -1,11 +1,7 @@
 { pkgs-unstable, ... }:
 ''
+@import '/home/bluecore/.cache/wal/colors-waybar.css';
 ${builtins.readFile "${pkgs-unstable.waybar}/etc/xdg/waybar/style.css"}
-
-@define-color bg rgba(31,31,40,1.);
-@define-color fg rgba(255,255,255,.85);
-@define-color color0 rgba(31,31,40,.85);
-
 
 
 * {
@@ -15,7 +11,7 @@ ${builtins.readFile "${pkgs-unstable.waybar}/etc/xdg/waybar/style.css"}
 }
 
 window#waybar {
-    background: @bg;
+    background: @background;
     border-bottom: none;
 }
 
@@ -23,13 +19,13 @@ window#waybar {
 
 #cpu, #memory, #disk, #pulseaudio, #clock, #tray, #custom-spotifyplaying {
     background: transparent;
-    color: @fg;
+    color: @foreground;
     border: none;
     padding: 0px 8px;
 }
 
 #custom-spotifyplaying, #cpu, #memory, #disk {
-    border-right: 1px solid @fg;
+    border-right: 1px solid @foreground;
 }
 
 #custom-spotifyplaying {
@@ -41,7 +37,7 @@ window#waybar {
 }
 
 #pulseaudio, #clock, #tray {
-    border-left: 1px solid @fg;
+    border-left: 1px solid @foreground;
 }
 
 
@@ -56,18 +52,17 @@ button:hover {
 
 #workspaces button {
     transition: all 0.2s ease-in-out;
-    color: @fg;
+    color: @foreground;
     background: transparent;
     border: none;
     padding: 0px 8px;
 }
 
 #workspaces button.active {
-  color: green;
+  color: @color1;
 }
 
 #workspaces button:hover {
-  color: yellow;
-
+  color: @color2;
 }
 ''
