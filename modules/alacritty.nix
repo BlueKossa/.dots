@@ -18,10 +18,7 @@ in
 
       window = {
         dynamic_padding = true;
-        padding = {
-          x = 10;
-          y = 10;
-        };
+        decorations = "none";
       };
 
       env = {
