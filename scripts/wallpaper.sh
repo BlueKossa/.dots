@@ -9,8 +9,6 @@ if [ "$sel" ]; then
     killall .waybar-wrapped
     killall waybar
     waybar &
-    notify-send "RES: $res"
-    notify-send "HAHH"
     notify-send "Wallpaper changed to $sel"
 fi
 
