@@ -3,7 +3,9 @@
 
 swww init &
 
-swww img ~/Wallpapers/wp.jpg &
+swww img ~/.cache/current_wallpaper.jpg &
+
+wal -R &
 
 nm-applet --indicator &
 
