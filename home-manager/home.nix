@@ -129,6 +129,7 @@ in
     pywal
     obs-studio
     wlr-randr
+    gimp
     # Terminal shit
     alacritty
     tmux
