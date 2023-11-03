@@ -17,7 +17,7 @@ window#waybar {
 
 
 
-#cpu, #memory, #disk, #pulseaudio, #clock, #tray, #custom-spotifyplaying {
+#cpu, #memory, #disk, #pulseaudio, #clock, #tray, #custom-spotifyplaying, #custom-powermenu {
     background: transparent;
     color: @foreground;
     border: none;
@@ -36,7 +36,7 @@ window#waybar {
     padding-left: 8px;
 }
 
-#pulseaudio, #clock, #tray {
+#pulseaudio, #clock, #tray, #custom-powermenu {
     border-left: 1px solid @foreground;
 }
 

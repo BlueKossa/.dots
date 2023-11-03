@@ -25,6 +25,7 @@ in
           "pulseaudio"
           "clock"
           "tray"
+          "custom/powermenu"
         ];
 
         # This was mostly copied from https://github.com/linuxmobile/kaku/blob/main/home/wayland/waybar/config.nix
@@ -54,6 +55,11 @@ in
           on-click-middle = "playerctl -p spotify play-pause";
           on-scroll-up = "playerctl -p spotify volume .1+";
           on-scroll-down = "playerctl -p spotify volume .1-";
+        };
+        "custom/powermenu" = {
+          format = "󰐥";
+          on-click = "$HOME/.dots/scripts/power_menu.sh";
+          tooltip = false;
         };
 
         memory = {
