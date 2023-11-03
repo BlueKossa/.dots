@@ -58,6 +58,8 @@ in
       dev = "nix develop --command zsh";
       dev-setup = "echo 'use flake' >> .envrc && direnv allow";
       screen = ''grim -g "$(slurp)" - | wl-copy'';
+      home = "home-manager $@ --flake ${dotRoot}";
+      system = "nixos-rebuild $@ --flake ${dotRoot}";
   };
   home = {
     file = {
@@ -78,6 +80,7 @@ in
     zsh = {
       initExtra = ''
         [[ ! -f ${p10kTheme} ]] || source ${p10kTheme}
+        wal -q -i "$HOME/.cache/current_wallpaper.jpg"
       '';
       enable = true;
       dotDir = ".dots/dots/zsh";
