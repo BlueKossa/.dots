@@ -34,11 +34,7 @@ in
           format = "{icon}";
           return-type = "json";
           max-length = 40;
-          on-click = "playerctl -p spotify previous";
-          on-click-right = "playerctl -p spotify next";
-          on-click-middle = "playerctl -p spotify play-pause";
-          on-scroll-up = "playerctl -p spotify volume .1+";
-          on-scroll-down = "playerctl -p spotify volume .1-";
+          on-click = "hyprctl dispatch focuswindow 'title:^(Spotify)$'";
           format-icons = {
             Playing = "<span foreground='#6791eb'>󰓇 </span>";
             Paused = "<span foreground='#cdd6f4'>󰓇 </span>";

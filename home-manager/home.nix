@@ -159,6 +159,7 @@ in
       jedi-language-server
       pycairo
       pygobject3
+      playsound
     ]))
 
     # C / Other
@@ -169,12 +170,15 @@ in
     gcc
     cmake
     alsa-lib
+    gdb
 
     
 
-    # Music
+    # Music / Sound
     spotify
     playerctl
+    mpg123
+    ffmpeg-full
 
     # Fonts
     (nerdfonts.override { fonts = [ "UbuntuMono" ]; })

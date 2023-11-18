@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+
+
+if [ $1 = "activate" ]; then
+    pamixer --default-source -u
+elif [ $1 = "deactivate" ]; then
+    pamixer --default-source -m
+fi
+
+ffplay -loglevel error -nodisp -autoexit .dots/scripts/pushtotalk/$1.mp3

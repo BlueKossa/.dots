@@ -43,6 +43,15 @@
           (import ./nixos/hardware-configuration__desk1.nix)
         ];
       };
+      desk2 = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs outputs;
+        };
+        modules = [
+          ./nixos/configuration.nix
+          (import ./nixos/hardware-configuration__desk2.nix)
+        ];
+      };
     };
     homeConfigurations = {
       # FIXME replace with your username@hostname
