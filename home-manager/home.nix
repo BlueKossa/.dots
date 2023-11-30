@@ -142,7 +142,7 @@ in
     # Programming
     # Zig
     zig
-    zigls
+    zls
     # Rust
     rustup
 
