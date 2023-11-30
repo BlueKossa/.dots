@@ -11,7 +11,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... } @ inputs:
   let
     inherit (self) outputs;
     system = "x86_64-linux";
@@ -22,14 +22,25 @@
         config = {
           allowUnfree = true;
         };
+        overlays = [
+          (self: super: {
+            discord = super.discord.overrideAttrs (
+              _: { src = builtins.fetchTarball {
+                url = "https://discord.com/api/download?platform=linux&format=tar.gz";
+                sha256 = "sha256:0rcg7mcw2mqklpxj2ygxgg624zx3p2xq2b32anbfvkgfy2pkvfrp";
+              }; 
+              }
+            );
+          })
+        ];
     };
 
-    unstable = import unstable {
-      inherit system;
+    unstable = import nixpkgs-unstable {
+        inherit system;
 
-      config = {
-        allowUnfree = true;
-      };
+        config = {
+          allowUnfree = true;
+        };
     };
   in
   {
@@ -57,7 +68,7 @@
       # FIXME replace with your username@hostname
       "bluecore@nixos" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
-        extraSpecialArgs = {inherit inputs outputs;};
+        extraSpecialArgs = {inherit inputs outputs pkgs unstable;};
         modules = [
           # > Our main home-manager configuration file <
           ./home-manager/home.nix

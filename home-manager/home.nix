@@ -1,10 +1,9 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, config, pkgs, unstable, ... }:
 
 let
   p10kTheme = "$HOME/.config/zsh/.p10k.zsh";
 
   dotRoot = "/home/bluecore/.dots";
-  pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux;
 in
 {
   imports = [
@@ -59,7 +58,7 @@ in
       dev-setup = "echo 'use flake' >> .envrc && direnv allow";
       screen = ''grim -g "$(slurp)" - | wl-copy'';
       home = "home-manager $@ --flake ${dotRoot}";
-      system = "nixos-rebuild $@ --flake ${dotRoot}";
+      system = "sudo nixos-rebuild $@ --flake ${dotRoot}";
   };
   home = {
     file = {
@@ -106,7 +105,7 @@ in
   };
 
   # https://github.com/nix-community/home-manager/issues/2942
-  nixpkgs.config.allowUnfreePredicate = _: true;
+  
 
   fonts.fontconfig.enable = true;
 
@@ -124,7 +123,7 @@ in
     screenkey
     killall
     jq
-    pkgs-unstable.xwaylandvideobridge
+    unstable.xwaylandvideobridge
     pamixer
     grim
     slurp
@@ -138,9 +137,12 @@ in
     tmux
     wezterm
     # Editors
-    pkgs-unstable.neovim
+    unstable.neovim
     
     # Programming
+    # Zig
+    zig
+    zigls
     # Rust
     rustup
 
@@ -179,6 +181,13 @@ in
     playerctl
     mpg123
     ffmpeg-full
+
+    # Gaming
+    steam
+
+    # Latex
+    zathura
+    texlive.combined.scheme-medium
 
     # Fonts
     (nerdfonts.override { fonts = [ "UbuntuMono" ]; })
