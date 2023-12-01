@@ -3,9 +3,9 @@
 sel=$(ls -1 $HOME/.dots/wallpapers | grep "\.jpg\|\.png" | rofi -dmenu -i -p "Select Wallpaper")
 
 if [ "$sel" ]; then
-    cp $HOME/.dots/wallpapers/$sel $HOME/.cache/current_wallpaper.jpg
+    echo $sel > $HOME/.cache/current_wallpaper
     wal -q -i $HOME/.dots/wallpapers/$sel
-    swww img $HOME/.cache/current_wallpaper.jpg
+    swww img $HOME/.dots/wallpapers/$sel
     killall .waybar-wrapped
     killall waybar
     waybar &

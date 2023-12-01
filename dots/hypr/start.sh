@@ -3,7 +3,8 @@
 
 swww init &
 
-swww img ~/.cache/current_wallpaper.jpg &
+wp=$(cat ~/.cache/current_wallpaper)
+swww img ~/.dots/wallpapers/$wp &
 
 wal -R &
 

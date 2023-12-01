@@ -79,7 +79,8 @@ in
     zsh = {
       initExtra = ''
         [[ ! -f ${p10kTheme} ]] || source ${p10kTheme}
-        wal -q -i "$HOME/.cache/current_wallpaper.jpg"
+        wp=$(cat $HOME/.cache/current_wallpaper)
+        wal -q -i "$HOME/.dots/wallpapers/$wp"
       '';
       enable = true;
       dotDir = ".dots/dots/zsh";
