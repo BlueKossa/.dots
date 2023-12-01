@@ -141,7 +141,7 @@ in
     
     # Programming
     # Zig
-    zig
+    unstable.zig
     zls
     # Rust
     rustup
@@ -190,6 +190,7 @@ in
     texlive.combined.scheme-medium
 
     # Fonts
-    (nerdfonts.override { fonts = [ "UbuntuMono" ]; })
+    (unstable.nerdfonts.override { fonts = [ "UbuntuMono" ]; })
+    inputs.fonts.packages.x86_64-linux.monaspace
   ];
 }

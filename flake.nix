@@ -4,6 +4,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    # fonts.url = "github:bluekossa/fonts";
+    fonts.url = "github:bluekossa/monaspice-nf-nix";
+    fonts.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
@@ -11,7 +14,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... } @ inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, fonts, ... } @ inputs:
   let
     inherit (self) outputs;
     system = "x86_64-linux";
