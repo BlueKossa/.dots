@@ -10,10 +10,10 @@ in
     settings = {
       font = {
         normal = {
-          family = "UbuntuMono Nerd Font Mono";
+          family = "MonaspiceKr NF";
         };
 
-        size = 12;
+        size = 10.;
       };
 
       window = {
