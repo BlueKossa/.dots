@@ -51,7 +51,6 @@ in
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     EDITOR = "nvim";
-    LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
   };
   home.shellAliases = {
       dev = "nix develop --command zsh";
@@ -166,11 +165,8 @@ in
     ]))
 
     # C / Other
-    libcxxabi
-    libcxx
     openssl
     pkg-config
-    gcc
     cmake
     alsa-lib
     gdb
