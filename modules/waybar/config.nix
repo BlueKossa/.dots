@@ -1,17 +1,21 @@
 { ... }:
 let
+  # Whatever you do do not change the — to a regular - in the tooltip because
+  # for some fkn reason it just does not appear then. 
   playerctlSpotify = ''
-        playerctl -p spotify metadata --format '{"text": "{{markup_escape(artist)}} - {{markup_escape(title)}}", "tooltip": "{{markup_escape(title)}}", "alt": "{{status}}", "class": "{{status}}"}' -F'';
+        playerctl -p spotify metadata --format '{"text": "{{markup_escape(artist)}} - {{markup_escape(title)}}", "tooltip": "{{markup_escape(artist)}} — {{markup_escape(title)}}", "alt": "{{status}}", "class": "{{status}}"}' -F'';
 in
 {
     mainBar = {
-        height = 30;
         layer = "top";
-        position = "top";
+        position = "left";
+        spacing = 5;
         tray = {
             spacing = 5;
         };
         modules-left = [
+          "custom/padding"
+          "image"
           "custom/spotifyicon"
           "custom/spotifyplaying"
           "cpu"
@@ -23,10 +27,45 @@ in
         ];
         modules-right = [
           "pulseaudio"
-          "clock"
-          "tray"
+          "group/clock"
           "custom/powermenu"
+          "custom/padding"
         ];
+
+        "group/clock" = {
+          orientation = "vertical";
+          spacing = 5;
+          modules = [
+            "clock#hour"
+            "clock#minsec"
+          ];
+        };
+
+        "group/spotify" = {
+          orientation = "vertical";
+          spacing = 5;
+          modules = [
+            "image"
+            "custom/spotifyicon"
+          ];
+        };
+        # I would LOVE to have this as image#spotify but NO YOU CANNOT DO THAT BECAUSE ????
+        # I have legit spent 5 hours trying to get it to work
+        "image" = {
+          exec = "/home/bluecore/.dots/scripts/album_cover.sh";
+          interval = 1;
+          size = 50;
+          on-click = "playerctl -p spotify previous";
+          on-click-right = "playerctl -p spotify next";
+          on-click-middle = "playerctl -p spotify play-pause";
+          on-scroll-up = "playerctl -p spotify volume .1+";
+          on-scroll-down = "playerctl -p spotify volume .1-";
+        };
+
+        "custom/padding" = {
+          format = " ";
+          tooltip = false;
+        };
 
         # This was mostly copied from https://github.com/linuxmobile/kaku/blob/main/home/wayland/waybar/config.nix
         "custom/spotifyicon" = {
@@ -34,24 +73,28 @@ in
           format = "{icon}";
           return-type = "json";
           max-length = 40;
-          on-click = "hyprctl dispatch focuswindow 'title:^(Spotify)$'";
-          format-icons = {
-            Playing = "<span foreground='#6791eb'>󰓇 </span>";
-            Paused = "<span foreground='#cdd6f4'>󰓇 </span>";
-          };
-          tooltip = false;
-        };
-        "custom/spotifyplaying" = {
-          exec = "${playerctlSpotify}";
-          format = "<span>{}</span>";
-          return-type = "json";
-          max-length = 40;
           on-click = "playerctl -p spotify previous";
           on-click-right = "playerctl -p spotify next";
           on-click-middle = "playerctl -p spotify play-pause";
           on-scroll-up = "playerctl -p spotify volume .1+";
           on-scroll-down = "playerctl -p spotify volume .1-";
+          format-icons = {
+            Playing = "<span foreground='#6791eb'>󰓇</span>";
+            Paused = "<span foreground='#cdd6f4'>󰓇</span>";
+          };
+          tooltip-format = "{tooltip}";
         };
+        #"custom/spotifyplaying" = {
+        #  exec = "${playerctlSpotify}";
+        #  format = "<span>{}</span>";
+        #  return-type = "json";
+        #  max-length = 40;
+        #  on-click = "playerctl -p spotify previous";
+        #  on-click-right = "playerctl -p spotify next";
+        #  on-click-middle = "playerctl -p spotify play-pause";
+        #  on-scroll-up = "playerctl -p spotify volume .1+";
+        #  on-scroll-down = "playerctl -p spotify volume .1-";
+        #};
         "custom/powermenu" = {
           format = "󰐥";
           on-click = "$HOME/.dots/scripts/power_menu.sh";
@@ -59,32 +102,33 @@ in
         };
 
         memory = {
-          format = " {}%";
-          format-alt = " {used}/{total} GiB";
+          format = "";
+          format-alt = "{}%";
           interval = 2;
         };
 
         cpu = {
-          format = " {usage}%";
-          format-alt = " {avg_frequency} GHz";
+          format = "";
+          format-alt = "{usage}%";
           interval = 2;
         };
 
         disk = {
-          format = "󰋊 {percentage_used}%";
-          format-alt = "󰋊 {used}/{total} GiB";
+          format = "󰋊";
+          format-alt = "{percentage_used}%";
           interval = 30;
           path = "/";
         };
         pulseaudio = {
-          format = "{icon} {volume}% {format_source}";
+          format = "{icon}";
+          format-alt = "{volume}%";
           format-muted = "";
           format-source = "<span foreground='#00ff00'></span>";
           format-source-muted = "<span foreground='#ff0000'></span>";
-          format-icons = {default = ["" "" ""];};
+          format-icons = {default = ["" "" "" "" "" ""];};
           scroll-step = 5;
           on-click-right = "pavucontrol";
-          tooltip = false;
+          tooltip-format = "{volume}%";
         };
 
         "hyprland/workspaces" = {
@@ -94,12 +138,15 @@ in
             format = "{icon}";
             format-icons = {
               default = "";
-              active = "";
+              "1" = "";
+              "2" = "󰙯";
+              "3" = "";
+              "4" = "󰓇";
             };
         };
-        clock = {
+        "clock#hour" = {
             interval = 1;
-            format = " {:%H:%M:%S}";
+            format = "{:%H}";
             tooltip-format = "<tt><small>{calendar}</small></tt>";
             calendar = {
               weeks-pos = "left";
@@ -111,6 +158,10 @@ in
                 today = "<span color='#ff6699'><b>{}</b></span>";
               };
             };
+        };
+        "clock#minsec" = {
+          interval = 1;
+          format = "{:%M:%S}";
         };
     };
 }

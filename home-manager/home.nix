@@ -132,6 +132,7 @@ in
     obs-studio
     wlr-randr
     gimp
+    expect
     # Terminal shit
     alacritty
     tmux

@@ -12,7 +12,12 @@ ${builtins.readFile "${pkgs-unstable.waybar}/etc/xdg/waybar/style.css"}
 
 window#waybar {
     background: @background;
+    opacity: 0.7;
     border-bottom: none;
+}
+
+window#waybar > * {
+    opacity: 1;
 }
 
 
@@ -21,25 +26,36 @@ window#waybar {
     background: transparent;
     color: @foreground;
     border: none;
-    padding: 0px 8px;
 }
 
+/* 
 #custom-spotifyplaying, #cpu, #memory, #disk {
     border-right: 1px solid @foreground;
 }
-
-#custom-spotifyplaying {
-    padding-left: 0px;
-}
+*/
 
 #custom-spotifyicon {
-    padding-left: 8px;
+    font-size: 30px;
 }
 
+#clock.hour {
+    font-size: 30px;
+}
+
+#modules-left {
+  padding-top: 20px;
+}
+
+
+/*
 #pulseaudio, #clock, #tray, #custom-powermenu {
     border-left: 1px solid @foreground;
 }
+*/
 
+#pulseaudio, #cpu, #memory, #disk {
+    font-size: 30px;
+}
 
 button:hover {
     box-shadow: inherit;
@@ -58,11 +74,25 @@ button:hover {
     padding: 0px 8px;
 }
 
+#workspaces label {
+    font-size: 30px;
+}
+
 #workspaces button.active {
   color: @color1;
+  background: transparent;
 }
 
 #workspaces button:hover {
   color: @color2;
+  background: transparent;
+}
+
+#custom-powermenu {
+  font-size: 30px;
+}
+
+#custom-padding {
+  padding: 0px 15px;
 }
 ''
