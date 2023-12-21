@@ -15,3 +15,5 @@ waybar &
 dunst &
 
 xwaylandvideobridge &
+
+/home/bluecore/.config/hypr/autostart.sh &
