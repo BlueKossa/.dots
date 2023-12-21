@@ -1,3 +1,6 @@
 [submodule "dots/nvim"]
 	path = dots/nvim
 	url = https://github.com/BlueKossa/nvim
+[submodule "dots/tmux/plugins/tpm"]
+	path = dots/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm

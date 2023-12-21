@@ -100,6 +100,11 @@ in
         set -as terminal-features ",xterm-256color:RGB"
         # Scrolling
         set -g mouse on
+        # Plugins
+        set -g @plugin 'tmux-plugins/tpm'
+        set -g @plugin 'tmux-plugins/tmux-sensible'
+        set -g @plugin 'niksingh710/minimal-tmux-status'
+        run -b '~/.dots/dots/tmux/plugins/tpm/tpm'
         '';
     };
   };
@@ -133,6 +138,7 @@ in
     wlr-randr
     gimp
     expect
+    ripgrep
     # Terminal shit
     alacritty
     tmux
