@@ -104,6 +104,7 @@ in
         set -g @plugin 'tmux-plugins/tpm'
         set -g @plugin 'tmux-plugins/tmux-sensible'
         set -g @plugin 'niksingh710/minimal-tmux-status'
+        set -g @minimal-tmux-bg 'colour2'
         run -b '~/.dots/dots/tmux/plugins/tpm/tpm'
         '';
     };
