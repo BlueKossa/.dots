@@ -140,6 +140,7 @@ in
     gimp
     expect
     ripgrep
+    swww
     # Terminal shit
     alacritty
     tmux

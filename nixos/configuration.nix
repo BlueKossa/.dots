@@ -155,7 +155,6 @@ in
     wget
     dunst
     libnotify
-    swww
     alacritty
     kitty
     rofi-wayland
