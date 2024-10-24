@@ -117,9 +117,17 @@ in
 
   home.packages = with pkgs; [
     # Misc
+    brightnessctl
+    aseprite
+    deluge
+    tor-browser
+    networkmanagerapplet
     git
-    gh
     discord
+    volumeicon
+    libreoffice
+    signal-desktop
+    gh
     wget
     lorien
     dolphin
@@ -141,12 +149,13 @@ in
     expect
     ripgrep
     swww
+    texliveFull
     # Terminal shit
     alacritty
     tmux
     wezterm
     # Editors
-    unstable.neovim
+    neovim
     
     # Programming
     # Zig
@@ -174,6 +183,7 @@ in
     ]))
 
     # C / Other
+    gcc
     openssl
     pkg-config
     cmake
@@ -193,10 +203,10 @@ in
 
     # Latex
     zathura
-    texlive.combined.scheme-medium
 
     # Fonts
     (unstable.nerdfonts.override { fonts = [ "UbuntuMono" ]; })
     inputs.fonts.packages.x86_64-linux.monaspace
+    inputs.fonts.packages.x86_64-linux.bebasneue
   ];
 }

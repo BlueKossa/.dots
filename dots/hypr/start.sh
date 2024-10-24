@@ -10,6 +10,8 @@ wal -R &
 
 nm-applet --indicator &
 
+blueman-applet &
+
 waybar &
 
 dunst &

@@ -8,7 +8,7 @@ LAST_URL_FILE="$CACHE_DIR/last_album_art_url"
 last_url=$(cat "$LAST_URL_FILE")
 res=$(
 playerctl -p spotify metadata --format "{{mpris:artUrl}}
-{{artist}} - {{title}}"
+{{markup_escape(artist)}} - {{markup_escape(title)}}"
 )
 
 if [ $? -ne 0 ]; then

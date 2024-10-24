@@ -14,22 +14,24 @@ in
             spacing = 5;
         };
         modules-left = [
-          "custom/padding"
-          "image"
-          "custom/spotifyicon"
-          "custom/spotifyplaying"
-          "cpu"
-          "memory"
-          "disk"
+          "tray"
+          # "custom/padding"
+          # "image"
+          # "custom/spotifyicon"
+           "cpu"
+           "memory"
+           "disk"
         ];
         modules-center = [
           "hyprland/workspaces"
         ];
         modules-right = [
+          "battery"
           "pulseaudio"
           "group/clock"
           "custom/powermenu"
           "custom/padding"
+          # "tray"
         ];
 
         "group/clock" = {
@@ -52,6 +54,7 @@ in
         # I would LOVE to have this as image#spotify but NO YOU CANNOT DO THAT BECAUSE ????
         # I have legit spent 5 hours trying to get it to work
         "image" = {
+          escape = true;
           exec = "/home/bluecore/.dots/scripts/album_cover.sh";
           interval = 1;
           size = 50;
@@ -69,6 +72,7 @@ in
 
         # This was mostly copied from https://github.com/linuxmobile/kaku/blob/main/home/wayland/waybar/config.nix
         "custom/spotifyicon" = {
+          escape = true;
           exec = "${playerctlSpotify}";
           format = "{icon}";
           return-type = "json";
@@ -118,6 +122,16 @@ in
           format-alt = "{percentage_used}%";
           interval = 30;
           path = "/";
+        };
+        battery = {
+          format = "{icon}";
+          format-alt = "{capacity}%";
+          states = {
+            "warning" = 30;
+            "critical" = 15;
+          };
+          format-icons = ["" "" "" "" ""];
+          interval = 10;
         };
         pulseaudio = {
           format = "{icon}";

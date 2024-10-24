@@ -13,7 +13,6 @@ in
 
     programs.hyprland = {
       enable = true;
-      nvidiaPatches = true;
       xwayland.enable = true;
     };
 
@@ -23,21 +22,26 @@ in
     };
 
     hardware = {
+      bluetooth = {
+        enable = true;
+        powerOnBoot = true;
+      };
       opengl.enable = true;
       nvidia.modesetting.enable = true;
     };
+    fonts.fontDir.enable = true;
 
   # Bootloader.
     boot.loader = {
     timeout = 5;
 
     efi = {
-      efiSysMountPoint = "/boot";
+      efiSysMountPoint = "/boot/efi";
     };
 
     grub = {
       enable = true;
-      default = 4; # Windows
+      default = 2; # Windows
       useOSProber = true;
       
       efiSupport = true;
@@ -101,6 +105,13 @@ in
     xkbVariant = "";
   };
 
+  services.signald = {
+    enable = true;
+    user = "bluecore";
+  };
+
+  services.blueman.enable = true;
+
   # Configure console keymap
   console.keyMap = "sv-latin1";
 
@@ -158,6 +169,7 @@ in
     alacritty
     kitty
     rofi-wayland
+    signaldctl
   ];
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];

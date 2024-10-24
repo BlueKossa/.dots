@@ -22,7 +22,7 @@ window#waybar > * {
 
 
 
-#cpu, #memory, #disk, #pulseaudio, #clock, #tray, #custom-spotifyplaying, #custom-powermenu {
+#cpu, #memory, #disk, #battery, #pulseaudio, #clock, #tray, #custom-spotifyplaying, #custom-powermenu {
     background: transparent;
     color: @foreground;
     border: none;
@@ -48,13 +48,37 @@ window#waybar > * {
 
 
 /*
-#pulseaudio, #clock, #tray, #custom-powermenu {
+#battery, #pulseaudio, #clock, #tray, #custom-powermenu {
     border-left: 1px solid @foreground;
 }
 */
 
-#pulseaudio, #cpu, #memory, #disk {
+#battery, #pulseaudio, #cpu, #memory, #disk {
     font-size: 30px;
+}
+
+
+#battery.warning {
+  color: orange;
+}
+
+@keyframes blink {
+  0% { color: red; }
+  40% { color: red; }
+  50% { color: white; }
+  60% { color: red; }
+  100% { color: red; }
+}
+
+#battery.critical:not(.charging) {
+  color: red;
+  animation-duration: 3s;
+  background: transparent;
+}
+
+#battery.charging {
+  background: transparent;
+  color: #00ff00;
 }
 
 button:hover {
