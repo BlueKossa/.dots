@@ -8,7 +8,7 @@ in
 {
     mainBar = {
         layer = "top";
-        position = "left";
+        position = "bottom";
         spacing = 5;
         tray = {
             spacing = 5;
@@ -106,19 +106,17 @@ in
         };
 
         memory = {
-          format = "";
-          format-alt = "{}%";
+          format = "RAM: {used}/{total} GiB";
           interval = 2;
         };
 
         cpu = {
-          format = "";
-          format-alt = "{usage}%";
+          format = "CPU {usage}%";
           interval = 2;
         };
 
         disk = {
-          format = "󰋊";
+          format = "DSK: {used}/{total} GiB";
           format-alt = "{percentage_used}%";
           interval = 30;
           path = "/";
@@ -135,13 +133,12 @@ in
         };
         pulseaudio = {
           format = "{icon}";
-          format-alt = "{volume}%";
           format-muted = "";
           format-source = "<span foreground='#00ff00'></span>";
           format-source-muted = "<span foreground='#ff0000'></span>";
           format-icons = {default = ["" "" "" "" "" ""];};
           scroll-step = 5;
-          on-click-right = "pavucontrol";
+          on-click = "pavucontrol";
           tooltip-format = "{volume}%";
         };
 

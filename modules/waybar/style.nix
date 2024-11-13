@@ -54,7 +54,7 @@ window#waybar > * {
 */
 
 #battery, #pulseaudio, #cpu, #memory, #disk {
-    font-size: 30px;
+    font-size: 20px;
 }
 
 

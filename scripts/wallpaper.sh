@@ -5,7 +5,7 @@ sel=$(ls -1 $HOME/.dots/wallpapers | grep "\.jpg\|\.png\|\.gif" | rofi -dmenu -i
 if [ "$sel" ]; then
     echo $sel > $HOME/.cache/current_wallpaper
     wal -q -i $HOME/.dots/wallpapers/$sel
-    swww img $HOME/.dots/wallpapers/$sel --transition-step 50
+    swww img $HOME/.dots/wallpapers/$sel --transition-step 2 --transition-fps 60 --resize fit
     killall .waybar-wrapped
     killall waybar
     waybar &

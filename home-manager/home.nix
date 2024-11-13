@@ -150,6 +150,7 @@ in
     ripgrep
     swww
     texliveFull
+    unstable.riseup-vpn
     # Terminal shit
     alacritty
     tmux
@@ -168,6 +169,7 @@ in
     nodejs
     nodePackages.typescript
     nodePackages.typescript-language-server
+    nodePackages.serve
 
     # lua
     lua
